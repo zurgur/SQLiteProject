@@ -6,15 +6,18 @@ import java.sql.*;
 
 public class Connect {
     //Connection conn = null;
-    public static void Connection(){
+    public static ResultSet Connection(){
         try{
             Class.forName("org.sqlite.JDBC");
             Connection con = DriverManager.getConnection("jdbc:sqlite:database.sqlite");
-            JOptionPane.showMessageDialog(null, "connect");
+            Statement stmt =  con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Flug");
+            return rs;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
