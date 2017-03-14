@@ -29,9 +29,15 @@ public class FrappForm {
         try {
             while (rs.next()){
                 String s = rs.getString("Fra");
-                fin += "frá: " + s;
+                fin += "Frá: " + s;
                 s = rs.getString("Til");
-                fin += " til: " + s;
+                fin += " Til: " + s;
+                s = rs.getString("Klukkan");
+                fin += " Kl: " + s;
+                s = rs.getString("Dagur");
+                fin += " Dagur: " +s;
+                s = rs.getString("Saeti");
+                fin += " Sæti: " + s;
                 list.addElement(fin);
                 fin = "";
             }
