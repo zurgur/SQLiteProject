@@ -23,6 +23,7 @@ public class FrappForm {
                     stmt = con.createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT * FROM Flug");
                     print(rs);
+                    con.close();
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -37,11 +38,13 @@ public class FrappForm {
                 Statement stmt = null;
                 try {
                     stmt = con.createStatement();
+                    String sql = "UPDATE Flug SET Saeti = Saeti - 1 WHERE rowid = 1";
+                    stmt.executeUpdate(sql);
+                    stmt.close();
+                    con.close();
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
-                String sql = "UPDATE Flug SET Saeti = Saeti - 1 WHERE rowid = 1";
-
 
 
                 /*"SELECT Saeti " +
