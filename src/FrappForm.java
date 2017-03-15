@@ -10,14 +10,43 @@ public class FrappForm {
     private JButton clickMeButton;
     private JPanel panel1;
     private JList list1;
+    private JButton takkaFráButton;
 
 
     public FrappForm() {
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ResultSet rs = Connect.Connection();
-                print(rs);
+                Connection con = Connect.Connection();
+                Statement stmt = null;
+                try {
+                    stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM Flug");
+                    print(rs);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+
+            }
+        });
+        takkaFráButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Connection con = Connect.Connection();
+                Statement stmt = null;
+                try {
+                    stmt = con.createStatement();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                String sql = "UPDATE Flug SET Saeti = Saeti - 1 WHERE rowid = 1";
+
+
+
+                /*"SELECT Saeti " +
+                                "FROM Flug" +
+                                " WHERE Til = 'kefflavík' AND Fra = 'alicante'";*/
             }
         });
     }
